@@ -2,7 +2,7 @@
 """
 Created on Sun Feb  2 11:24:42 2014
 
-@author: YOUR NAME HERE
+@author: HALEY PELLETIER
 """
 
 # you may find it useful to import these variables (although you are not required to use them)
@@ -219,9 +219,8 @@ def longest_ORF_noncoding(dna, num_trials):
         dna = list(dna)
         shuffle(dna)        
         maxms.append(longest_ORF(collapse(dna)))        
-    return len(max(maxms,key=len))
-     
-#dna = load_seq("./data/X73525.fa")           
+    return len(max(maxms,key=len))     
+          
 #print longest_ORF_noncoding(dna,1500)
 
 def gene_finder(dna, threshold):
@@ -240,6 +239,5 @@ def gene_finder(dna, threshold):
         if len(ORFs[i]) > threshold:
             aminos.append(coding_strand_to_AA(dna))
     return aminos
-    
-dna = load_seq("./data/X73525.fa")   
-print gene_finder(dna,1000)
+
+#print gene_finder(dna,1000)
