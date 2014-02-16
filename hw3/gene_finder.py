@@ -116,6 +116,7 @@ def find_all_ORFs_oneframe(dna):
         dna: a DNA sequence
         returns: a list of non-nested ORFs
     """
+<<<<<<< HEAD
     ORFs = []    
     for i in range (0,len(dna),3):      
         codon = dna[i:i+3]              
@@ -127,6 +128,16 @@ def find_all_ORFs_oneframe(dna):
        
 #print find_all_ORFs_oneframe('TAGATGCCCATGCCCTAG') #should return ATGCCCATGCCC
                     
+=======
+     
+    # YOUR IMPLEMENTATION HERE        
+     
+def find_all_ORFs_oneframe_unit_tests():
+    """ Unit tests for the find_all_ORFs_oneframe function """
+
+    # YOUR IMPLEMENTATION HERE
+
+>>>>>>> upstream/master
 def find_all_ORFs(dna):
     """ Finds all non-nested open reading frames in the given DNA sequence in all 3
         possible frames and returns them as a list.  By non-nested we mean that if an
@@ -205,6 +216,11 @@ def longest_ORF(dna):
     return max(ORFs,key=len)
     
 #print longest_ORF('ATGATGTAGATGATGATGTAC') #should return ATGATGATGTAC
+
+def longest_ORF_unit_tests():
+    """ Unit tests for the longest_ORF function """
+
+    # YOUR IMPLEMENTATION HERE
 
 def longest_ORF_noncoding(dna, num_trials):
     """ Computes the maximum length of the longest ORF over num_trials shuffles
