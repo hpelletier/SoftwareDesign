@@ -32,4 +32,7 @@ def draw_4x4_grid():
     
 draw_2x2_grid()
 draw_4x4_grid()
-    
+
+'''
+Love the use of auxiliary functions. Good work!
+'''
