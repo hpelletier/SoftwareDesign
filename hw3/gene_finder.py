@@ -35,7 +35,23 @@ def coding_strand_to_AA(dna):
                 if codons[r][c] == str(codon):
                     amino_acids.append(aa[r])
     amino_acids = collapse(amino_acids)                     
-    return amino_acids       
+    return amino_acids
+
+'''
+Great work-- two things: there's a shorthand for range() and your for loop above.
+
+If your start is 0 and you don't have a step defined, you can just call range(len(codons))
+
+As for the for loop:
+
+for i in range(0, len(dna), 3):
+    codon = dna[i:i+3]
+    for r in range(len(codons)):    # set r = each element in codons
+        if codon in codons[r]:      # check if codon is in codons[r]
+            amino_acids.append(aa[r])
+
+Let me know if I can help clarify any of this!
+'''
 
 def coding_strand_to_AA_unit_tests():
     """ Unit tests for the coding_strand_to_AA function """
@@ -54,6 +70,7 @@ def get_reverse_complement(dna):
         returns: the reverse complementary DNA sequence represented as a string
     """
     sequence = []
+    # shorthand: for c in dna: # for character `c` in string `dna`
     for i in range(0,len(dna)):
         letter = dna[i]
         if letter == 'G':
@@ -65,7 +82,7 @@ def get_reverse_complement(dna):
         elif letter == 'T':
             sequence.append('A')
         else:
-            return "Error"
+            return "Error"      # yay, error catching! More comments at the bottom
     sequence = collapse(sequence)
     return sequence
         
@@ -90,7 +107,8 @@ def rest_of_ORF(dna):
         returns: the open reading frame represented as a string
     """
     for i in range (0,len(dna),3):
-        codon = dna[i:i+3]        
+        codon = dna[i:i+3]     
+        # shorthand: if codon in ['TAG', 'TAA', 'TGA']:
         if (str(codon) == 'TAG') or (str(codon) == 'TAA') or (str(codon) == 'TGA'):
            return dna[0:i]
     return dna        
@@ -116,11 +134,14 @@ def find_all_ORFs_oneframe(dna):
         dna: a DNA sequence
         returns: a list of non-nested ORFs
     """
+
+# ouch, merge conflicts! I'd be happy to help you resolve this separately :-)
 <<<<<<< HEAD
     ORFs = []    
     for i in range (0,len(dna),3):      
         codon = dna[i:i+3]              
         if (str(codon) == 'ATG'):
+            # if you want the substring from location i to the end, you can do: dna[i:]
             ORF = rest_of_ORF(dna[i:len(dna)])
             ORFs.append(ORF)  
             dna = dna[(i+len(ORF)):len(dna)]                                                 
@@ -179,7 +200,18 @@ def find_all_ORFs(dna):
     else:
         return ORFs
             
+'''
+Excellent logic! Here's a more efficient way of doing it 
+(using your find_all_ORFs_oneframe function)
 
+ORFs = []
+
+ORFs.append(find_all_ORFs_oneframe(dna))        # reading frame 1
+ORFs.append(find_all_ORFs_oneframe(dna[1:]))    # reading frame 2
+ORFs.append(find_all_ORFs_oneframe(dna[2:]))    # reading frame 3
+
+return ORFs
+'''
 def find_all_ORFs_unit_tests():
     """ Unit tests for the find_all_ORFs function """
         
@@ -213,7 +245,7 @@ def longest_ORF(dna):
         as a string"""
 
     ORFs = find_all_ORFs_both_strands(dna)   
-    return max(ORFs,key=len)
+    return max(ORFs,key=len)    # awesome find! I didn't even know about this.
     
 #print longest_ORF('ATGATGTAGATGATGATGTAC') #should return ATGATGATGTAC
 
