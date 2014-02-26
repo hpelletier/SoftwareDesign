@@ -16,7 +16,7 @@ def build_random_function(min_depth,max_depth):
     """
 
     if max_depth >= 2 and min_depth >= 2:
-        int = randint(0,4)        
+        int = randint(0,4)        # be careful not to use one of Python's keywords as a variable
         if int == 0:
             List = ['prod',build_random_function(min_depth-1,max_depth-1),build_random_function(min_depth-1,max_depth-1)]
         elif int == 1:
@@ -48,12 +48,19 @@ def build_random_function(min_depth,max_depth):
     else:
         int = randint(0,1)
         if int == 0:            
-            List = ['x']            
+            List = ['x']            # same thing here. "list" is a keyword in Python. Avoid using them as variable names
         elif int == 1:        
             List = ['y']
         
     return List
-    
+
+'''
+The logic definitely works, but the way it's written seems rather inefficient. What if you stored the names of your building block functions
+as a list? Could you use the fact that randint takes in a minimum and maxmium to make a simpler function?
+
+Also, your "else" block is your base case. It doesn't make a big difference, but you generally want to check for base case before other cases.
+'''
+
 #print build_random_function(2,5)
 
 def evaluate_random_function(f, x, y):
@@ -81,10 +88,13 @@ def evaluate_random_function(f, x, y):
         output = float(y)
             
     return output
-    
+
+'''
+The 'x' and 'y' are your base cases, so you want to check for those before checking for others.
+'''
 #print evaluate_random_function(build_random_function(2,5),-0.5,0.7)
 
-def remap_interval(x,a,b,c,d):
+def remap_interval(x,a,b,c,d):      # I personally appreciate that you changed the variable names to simpler ones. :-)
     """ Maps the input value in the given input range to an 
         output value in the given output range
         Inputs: x: Input value
@@ -127,6 +137,7 @@ def create_random_art():
             
             y = float(remap_interval(float(j),0,349,-1,1))
             
+            # I personally recommending breaking up the following three lines to make them more readable.
             red = remap_interval(float(evaluate_random_function(red_f,x,y)),-1,1,0,255)
             green = remap_interval(float(evaluate_random_function(green_f,x,y)),-1,1,0,255)
             blue = remap_interval(float(evaluate_random_function(blue_f,x,y)),-1,1,0,255)
