@@ -133,6 +133,6 @@ def create_random_art():
             
             pixel_map[i,j] = (int(red),int(green),int(blue))            
 
-    img.save('/home/hpelletier/SoftwareDesign/hw4/art100','jpeg') #saves art as a jpeg to hw4 folder
+    img.save('/home/hpelletier/SoftwareDesign/hw4/art101','jpeg') #saves art as a jpeg to hw4 folder
            
-#create_random_art()
+create_random_art()
