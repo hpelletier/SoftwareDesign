@@ -17,21 +17,21 @@ def get_tweets(query,num):
                num: the number of related tweets to return
        Outputs: a list of tweets (of length num) related to query
     """
-    tweet_list = Twitter().search(query,start=None,count=num,cached=False)
+    tweet_list = Twitter().search(query,count=num,cached=False)
     Tweets = []
     for tweet in tweet_list:
         Tweets.append(tweet.text)
     return Tweets                     
     
 def filter_tweet(tweet):
-     """Removes mentions, tags, links, 'RT's, non-english words, and single
-        letters from 'raw' tweets and returns lowercase 'filtered' tweets.
-        Input: raw tweet
-        Output: filtered tweet
-    """
+    """Removes mentions, tags, links, 'RT's, non-english words, and single
+       letters from 'raw' tweets and returns lowercase 'filtered' tweets.
+       Input: raw tweet
+       Output: filtered tweet"""
+        
     letter_list = ['b','c','d','e','f','g','h','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     d = enchant.Dict("en_US")
-    word_list = re.findall(r"[a-zA-Z'#@:/]+",tweet)
+    word_list = re.findall(r"[a-zA-Z'#@]+",tweet)
     new_list = []
     for word in word_list:  
         word = word.lower()
@@ -40,11 +40,11 @@ def filter_tweet(tweet):
     return ' '.join(new_list)
     
 def get_avg_sentiment(sent_list):
-     """For a list of sentiments, removes trivial entries
+    """For a list of sentiments, removes trivial entries
         (0.0, 0.0) and returns the average sentiment.
         Input: a list of sentiments
-        Output: the average sentiment
-    """
+        Output: the average sentiment"""
+
     new_list = []
     for sent in sent_list:
         if sent[0]!=0.0 and sent[1]!=0.0:
