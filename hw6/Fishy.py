@@ -31,7 +31,7 @@ class FishyModel:
             right_fishy = RightFish((random.randint(0,255),random.randint(0,255),random.randint(0,255)),random.randint(2,self.max_radius),x_size-1,y)
             self.right_fishies.append(right_fishy)
             
-        self.mainFish = MainFish((255,255,255),10,x_size/2,y_size/2)      
+        self.mainFish = MainFish((255,255,255),10,x_size/2,y_size/2) #puts the main fish in the center of the window  
           
     def update(self):
         """ Updates the state of the model """
