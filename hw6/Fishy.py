@@ -150,14 +150,14 @@ class MainFish:
         
         if self.x >= Right_Limit:
             moveHorz = False
-            self.x = Right_Limit-1
-            self.vx = int(-self.vx/2)
             boop.play()
+            self.x = Right_Limit-1
+            self.vx = int(-self.vx/2)            
         if self.x <= Left_Limit:
             moveHorz = False
-            self.x = Left_Limit+1
-            self.vx =int(-self.vx/2) 
             boop.play()
+            self.x = Left_Limit+1
+            self.vx =int(-self.vx/2)            
         if self.y <= Up_Limit:
             moveVert = False
             boop.play()
