@@ -3,7 +3,9 @@
 Download:  pygame, timidity (for sound card issues)
 
 
-Make sure to keep all sound files in the same folder as the game file.
+Make sure to keep all sound files in the same folder as the game file.  
+
+Fishy is the main game (play this normally).  Demonic_Fishy is an alternate version, with a slightly messed up win state (play if you dare).
 
 
 Game Description:
