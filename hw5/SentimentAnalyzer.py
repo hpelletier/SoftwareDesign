@@ -15,6 +15,9 @@ from pattern.en import *
 import enchant
 import re
 
+# In terms of imports, it might make some sense here for many of these to import just what you need rather than
+# using import *. You don't seem to use that much from some of these libraries, and its more efficient to import
+# with pretty much anything efficiency thing.
 
 def get_tweets(query,num):
     """Searches Twitter for the given query and returns a list of the specified 
@@ -23,6 +26,10 @@ def get_tweets(query,num):
                num: the number of related tweets to return
        Outputs: a list of tweets (of length num) related to query
     """
+
+    # Nice job with the docstrings through your entire group! You remembered to include
+    # inputs and outputs which is critcally important.
+
     tweet_list = Twitter().search(query,count=num,cached=False)
     Tweets = []
     for tweet in tweet_list:
@@ -37,6 +44,8 @@ def filter_tweet(tweet):
        Output: filtered tweet
     """        
     letter_list = ['b','c','d','e','f','g','h','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    # I understand that you are exluding a and i from removal because they are also common english words, but this
+    # was not clear to me at first - line comments explaining things like this can be very helpful in addition to docstrings
     d = enchant.Dict("en_US")
     word_list = re.findall(r"[a-zA-Z'#@]+",tweet)
     new_list = []
@@ -73,7 +82,8 @@ def get_avg_sentiment(sent_list):
         total_subj += subjectivity[i]
     avg_subj = total_subj/len(subjectivity)      
     
-    return (avg_pol,avg_subj)    
+    return (avg_pol,avg_subj)	# Nice job using the tuple multiple return. Protip - if you just use "return avg_pol,avg_subj" it'll package it up
+    							# as a tuple anyhow.
        
 def analyze_sentiment(query,num):
     """Searches Twitter for the given query and uses the first num tweets
@@ -105,6 +115,8 @@ def make_graph(data1,data2,query1,query2):
     n_groups = 2
     
     d1 = data1 #data from query 1
+    # This is nitpicky, but if this is the name you are going to give this variable, why not just do this when you take
+    # it into the function as an argument?
     d2 = data2
     q1 = str(query1)
     q2 = str(query2)
@@ -169,6 +181,7 @@ ttk.Style().configure('TButton',padding=6,relief='flat',background='white')
 
 ttk.Button(root,text='OK',command=on_ok).pack(side=LEFT)
 ttk.Button(root,text='CLOSE',command=root.quit).pack(side=RIGHT)
+# So this doesn't actually seem to get rid of the text box - might want to debug this
 
 root.mainloop()
 
